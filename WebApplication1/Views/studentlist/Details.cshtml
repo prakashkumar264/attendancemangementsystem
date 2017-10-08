@@ -1,0 +1,76 @@
+﻿@model WebApplication1.Models.studentlist
+
+<div>
+    <h4>studentlist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.uniqueid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uniqueid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.joinyear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.joinyear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rollno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rollno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.parentmob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.parentmob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.batch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.batch)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

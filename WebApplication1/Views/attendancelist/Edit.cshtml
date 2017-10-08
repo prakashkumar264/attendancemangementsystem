@@ -1,0 +1,297 @@
+﻿@model WebApplication1.Models.stdlisttheory
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "Adivsor | Dashboard";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/themes/all-themes.css" rel="stylesheet" />
+
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">Attendance Management System</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- #Top Bar -->
+
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="/images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">prakash</div>
+                </div>
+            </div>
+
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="@Url.Action("advisor", "advisor")">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Student</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "studentlist")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Details</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("uploadstudent", "uploadstudent")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Upload</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Theory Attendance</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "attendancelist")">
+                                    <i class="material-icons">add_circle</i>
+                                    <span>New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Edit", "attendancelist")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Edit</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "attendancelist")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>View</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("total", "attendancelist")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>Total</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Practical Attendance</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "practicalattendancelist")">
+                                    <i class="material-icons">add_circle</i>
+                                    <span>New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Edit", "practicalattendancelist")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Edit</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "practicalattendancelist")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>View</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("total", "practicalattendancelist")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>Total</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="sign-in.html">
+                            <i class="material-icons">input</i>
+                            <span>LogOut</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">Know Green Tech</a>.
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>DASHBOARD</h2>
+            </div>
+
+            <div class="row">
+                <div class="card">
+                    <div class="body">
+                        <p>
+                            <b>Select Subject</b>
+                        </p>
+                        @using (Html.BeginForm("getlistedit", "attendancelist", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.DropDownListFor(x => x.subid, new SelectList(Model.theorysubject, "id", "name"), "Select Subject", new { @class = "form-control", onchange = "getdate()" })
+                                <br />
+                                @Html.DropDownListFor(x => x.modifiedon, new SelectList(Enumerable.Empty<SelectListItem>(), "modifiedon", "modifiedon"), "Select Date", new { @class = "form-control" })
+                            </div>
+                            <br />
+                            <input type="submit" value="GetList" class="btn btn-success" />
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card">
+                    <div class="row" id="tablethoery">
+                        <div class=" col-md-6 col-md-offset-3">
+                            @using (Html.BeginForm("Edit", "attendancelist"))
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Roll No.</th>
+                                                <th>Attendance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.attendd.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Model.attendd[i].stdrollno
+                                                    </td>
+                                                    <td>
+                                                        @Html.HiddenFor(m => Model.attendd[i].stdrollno)
+                                                        @Html.CheckBoxFor(m => Model.attendd[i].IsCheck, htmlAttributes: new { @style = "opacity: 1;position: inherit;" })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <input class="btn btn-block bg-pink waves-effect" type="submit" value="submit" />
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="/plugins/node-waves/waves.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="/js/pages/index.js"></script>
+    <script src="/js/demo.js"></script>
+
+    <script>
+        function getdate() {
+            var tid = $('#subid').val();
+           $.ajax({
+               url: '/attendancelist/demo',
+               type: "GET",
+               dataType: "JSON",
+               data: { idd: tid },
+               success: function (moddates) {
+                   $("#modifiedon").html(""); // clear before appending new list
+                   $.each(moddates, function (i, moddate) {
+                       $("#modifiedon").append(
+                           $('<option></option>').val(moddates[i].modifiedon).html(moddates[i].modifiedon));
+                   });
+               }
+
+           });
+       }
+
+    </script>
+
+</body>
+
+</html>
+

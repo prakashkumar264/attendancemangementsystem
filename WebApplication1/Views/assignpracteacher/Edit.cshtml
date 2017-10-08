@@ -1,0 +1,279 @@
+﻿@model WebApplication1.Models.subpracticallist
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "Student Details | Dashboard";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">Attendance Management System</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- #Top Bar -->
+
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="/images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prakash</div>
+                </div>
+            </div>
+
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="@Url.Action("admin", "admin")">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Assign Teachers</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "assignteacher")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>Subject Teachers</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "assignpracteacher")">
+                                    <i class="material-icons">view_list</i>
+                                    <span>Practical Teachers</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Teacher Records</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "teacherlists")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Teacher Details</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Register", "Register")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Register Teacher</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Theory Subject Records</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "subjectlists")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Modify</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("uploadsubject", "uploadsubject")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Add</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">content_copy</i>
+                            <span>Practical Subject Records</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="@Url.Action("Index", "subpracticallists")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Modify</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("uploadsubpractical", "uploadsubpractical")">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span>Add </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="login.html">
+                            <i class="material-icons">input</i>
+                            <span>LogOut</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">Know Green Tech</a>.
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>DASHBOARD</h2>
+            </div>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="body ">
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <form>
+                            <h4>subject list</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.id)
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                </span>
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.batch, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.batch, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.LabelFor(model => model.teachername, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </span>
+                                <div class="form-line">
+                                    @Html.DropDownListFor(x => x.teacherid, new SelectList(Model.selectadvisor, "id", "name"), "Select Teacher", htmlAttributes: new { @class = "form-control ", data_live_search = "true" })
+                                </div>
+                            </div>
+
+
+
+                            <input type="submit" value="Save" class="btn btn-block btn-lg bg-pink waves-effect" />
+
+                        </form>
+
+
+                        <br />
+                        <div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="/plugins/node-waves/waves.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="/js/demo.js"></script>
+
+    <script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="/js/pages/tables/jquery-datatable.js"></script>
+
+    <script src="/js/pages/forms/basic-form-elements.js"></script>
+    <script src="/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+</body>
+
+</html>

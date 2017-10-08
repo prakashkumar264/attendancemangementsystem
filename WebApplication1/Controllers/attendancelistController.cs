@@ -1,0 +1,401 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WebApplication1.Context;
+using WebApplication1.Models;
+using System.Text;
+using Newtonsoft.Json;
+
+namespace WebApplication1.Controllers
+{
+    public class attendancelistController : Controller
+    {
+        private AttendanceContext db = new AttendanceContext();
+
+        // GET: attendancelist
+        [HttpGet]
+        public ActionResult Index()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("login", "login");
+            }
+            else
+            {
+                var id = Session["id"];
+                var name = Session["name"];
+                var sem = Session["sem"];
+                stdlisttheory update = new stdlisttheory();                
+                update.attend = gettheorystd();
+                update.theorysubject = gettheorysub();
+                return View(update);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Index(stdlisttheory stdlst)
+        {
+            
+            var insertattendance = new List<stdlisttheory>();
+            int id = Convert.ToInt32(TempData["id"]);
+             using (var adv = new AttendanceContext())
+            {
+                var advisor = adv.Database.SqlQuery<stdlisttheory>("exec getsubsemfromid @id", new SqlParameter("@id", id)).ToList();
+                TempData["semtest"] = advisor[0].sem;
+            }
+            int semt = Convert.ToInt32(TempData["semtest"]);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in stdlst.attend)
+            {
+                int subjectidt = Convert.ToInt32(TempData["id"]);
+                int stdrollnot = item.rollno;
+                if (item.IsCheck)
+                {
+                    int IsCheckt = 1;
+                    using (var adv = new AttendanceContext())
+                    {
+                        var sem = new SqlParameter("@sem", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = semt
+                        };
+                        var stdrollno = new SqlParameter("@stdrollno", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = stdrollnot
+                        };
+                        var subjectid = new SqlParameter("@subjectid", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = subjectidt
+                        };
+                        var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = IsCheckt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectid, @IsCheck", stdrollno, sem, subjectid, IsCheck).ToList();
+                    }
+                }
+                else
+                {
+                    int IsCheckt = 0;
+                    using (var adv = new AttendanceContext())
+                    {
+                        var sem = new SqlParameter("@sem", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = semt
+                        };
+                        var stdrollno = new SqlParameter("@stdrollno", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = stdrollnot
+                        };
+                        var subjectid = new SqlParameter("@subjectid", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = subjectidt
+                        };
+                        var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = IsCheckt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectid, @IsCheck", stdrollno, sem, subjectid, IsCheck).ToList();
+                    }
+                }
+            }
+
+            return RedirectToAction("Details","attendancelist");
+
+        }
+
+        public ActionResult Details()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("login", "login");
+            }
+            else
+            {
+                var id = Session["id"];
+                var name = Session["name"];
+                var sem = Session["sem"];
+                stdlisttheory update = new stdlisttheory();
+                update.attendd = getliststd();
+                update.theorysubject = gettheorysub();
+                return View(update);
+            }
+        }
+
+        public ActionResult Edit()
+        {
+             if (Session["id"] == null)
+            {
+                return RedirectToAction("login", "login");
+            }
+            else
+            {
+                var id = Session["id"];
+                var name = Session["name"];
+                var sem = Session["sem"];
+                stdlisttheory update = new stdlisttheory();
+                update.attendd = getliststd();
+                update.theorysubject = gettheorysub();
+                return View(update);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(stdlisttheory stdlst)
+        {
+            var insertattendance = new List<stdlisttheory>();                       
+            StringBuilder sb = new StringBuilder();
+            
+            string modifiedont = Convert.ToString(Session["prak"]);
+            foreach (var item in stdlst.attendd)
+            {
+                int stdrollnot = item.stdrollno;
+                if (item.IsCheck)
+                {
+                    int IsCheckt = 1;
+                    using (var adv = new AttendanceContext())
+                    {
+                        
+                        var stdrollno = new SqlParameter("@stdrollno", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = stdrollnot
+                        };
+                        var modifiedon = new SqlParameter("@modifiedon", SqlDbType.VarChar, 50)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = modifiedont
+                        };
+                        var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = IsCheckt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon", stdrollno, IsCheck , modifiedon).ToList();
+                    }
+                }
+                else
+                {
+                    int IsCheckt = 0;
+                    using (var adv = new AttendanceContext())
+                    {
+                       
+                        var stdrollno = new SqlParameter("@stdrollno", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = stdrollnot
+                        };
+                        var modifiedon = new SqlParameter("@modifiedon", SqlDbType.VarChar, 50)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = modifiedont
+                        };
+                        var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = IsCheckt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon ", stdrollno, IsCheck ,modifiedon).ToList();
+                    }
+                }
+            }
+
+            return RedirectToAction("Details","attendancelist");
+        }
+
+        [HttpGet]
+        public ActionResult total()
+        {
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("login", "login");
+            }
+            else
+            {
+                var id = Session["id"];
+                var name = Session["name"];
+                var sem = Session["sem"];
+                stdlisttheory update = new stdlisttheory();
+                update.totalattend = gettotalstd();
+                update.totalroll = gettotalroll();
+                update.theorysubject = gettheorysub();
+                return View(update);
+            }
+        }
+
+        public List<fetchsubthoerysubjectforselect> gettheorysub()
+        {
+            int teacherid = Convert.ToInt32(Session["id"]);
+            var advisor = new List<fetchsubthoerysubjectforselect>();
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<fetchsubthoerysubjectforselect>("exec attendfetchtheorysub @teacherid", new SqlParameter("@teacherid", teacherid)).ToList();
+      
+            }
+            return advisor;
+        }
+
+        //New
+        public List<attendancelist> gettheorystd()
+        {
+            var advisor = new List<attendancelist>();
+            int sem = Convert.ToInt32(TempData["sem"]);
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<attendancelist>("exec studentfetchtheory @sem", new SqlParameter("@sem", sem)).ToList();
+            }
+            return advisor;
+        }
+
+        //New
+        [HttpPost]
+        public ActionResult test(stdlisttheory aa, FormCollection form)
+        {
+            using (var reg = new AttendanceContext())
+            {
+                var name = new SqlParameter("@name", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = aa.subid
+                };
+            }
+            TempData["id"] = aa.subid;
+            return RedirectToAction("testdemo", "attendancelist");
+        }
+
+        //New
+        public ActionResult testdemo(stdlisttheory aa)
+        {
+            int id = Convert.ToInt32(TempData["id"]);
+            using (var adv = new AttendanceContext())
+            {
+                var advisor = adv.Database.SqlQuery<stdlisttheory>("exec getsubsemfromid @id", new SqlParameter("@id", id)).ToList();
+                TempData["sem"] = advisor[0].sem;
+            }
+
+            return RedirectToAction("Index", "attendancelist");
+        }
+
+        //Details
+        public ActionResult demo(int idd)
+        {
+            int subjectid = Convert.ToInt32(idd);
+            TempData["as"] = subjectid;
+            Session["demo"] = TempData["as"];
+            var moddates = new List<getdate>();
+            using (var adv = new AttendanceContext())
+            {
+                moddates = adv.Database.SqlQuery<getdate>("exec getmoddate @subjectid", new SqlParameter("@subjectid", subjectid)).ToList();
+            }
+            return Json(moddates, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult demo2(string idd2)
+        {
+            string demo2 = Convert.ToString(idd2);
+            Session["demo2"] = demo2;
+            int subjectid = Convert.ToInt32(Session["demo"]);
+            var moddates = new List<getdate>();
+            using (var adv = new AttendanceContext())
+            {
+                moddates = adv.Database.SqlQuery<getdate>("exec getmoddate @subjectid", new SqlParameter("@subjectid", subjectid)).ToList();
+            }
+            return Json(moddates, JsonRequestBehavior.AllowGet);
+        }
+
+     
+        //Details
+        public ActionResult getlist(stdlisttheory aa, FormCollection form)
+        {
+            using (var reg = new AttendanceContext())
+            {
+                var name = new SqlParameter("@name", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = aa.modifiedon
+                };
+            }
+            TempData["moddate"] = aa.modifiedon;
+            return RedirectToAction("Details", "attendancelist");
+        }
+
+        //Details
+        public List<attendancelisttt> getliststd()
+        {
+            var advisor = new List<attendancelisttt>();
+            string modifiedon = Convert.ToString(TempData["moddate"]);
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<attendancelisttt>("exec getstudentmoddate @modifiedon" , new SqlParameter("@modifiedon" , modifiedon)).ToList();
+            }
+            return advisor;
+        }
+
+        //Edit
+        public ActionResult getlistedit(stdlisttheory aa, FormCollection form)
+        {
+            using (var reg = new AttendanceContext())
+            {
+                var name = new SqlParameter("@name", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = aa.modifiedon
+                };
+            }
+            TempData["moddate"] = aa.modifiedon;
+            Session["prak"] = aa.modifiedon;
+            return RedirectToAction("Edit", "attendancelist");
+        }
+
+        public ActionResult gettotal(stdlisttheory aa, FormCollection form)
+        {
+            using (var reg = new AttendanceContext())
+            {
+                var modifiedon2 = new SqlParameter("@modifiedon2", SqlDbType.VarChar, 50)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = aa.modifiedon2
+                };
+            }
+            Session["secondmoddate"] = aa.modifiedon2;
+            return RedirectToAction("total", "attendancelist");
+        }
+
+        public List<totalattendacelistcount> gettotalstd()
+        {
+            var advisor = new List<totalattendacelistcount>();
+            int subjectid = Convert.ToInt32(Session["demo"]);
+            string modifiedon1 = Convert.ToString(Session["demo2"]);
+            string modifiedon2 = Convert.ToString(Session["secondmoddate"]);
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<totalattendacelistcount>("exec gettotaltheoryattendance @subjectid , @modifiedon1, @modifiedon2", new SqlParameter("@subjectid", subjectid), new SqlParameter("@modifiedon1", modifiedon1), new SqlParameter("@modifiedon2", modifiedon2)).ToList();
+            }
+            return advisor;
+        }
+
+        public List<totalattendacelistrollno> gettotalroll()
+        {
+            var advisor = new List<totalattendacelistrollno>();
+            int subjectid = Convert.ToInt32(Session["demo"]);
+            string modifiedon1 = Convert.ToString(Session["demo2"]);
+            string modifiedon2 = Convert.ToString(Session["secondmoddate"]);
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<totalattendacelistrollno>("exec gettotaltheoryattendancerollno @subjectid , @modifiedon1, @modifiedon2", new SqlParameter("@subjectid", subjectid), new SqlParameter("@modifiedon1", modifiedon1), new SqlParameter("@modifiedon2", modifiedon2)).ToList();
+            }
+            return advisor;
+        }
+    }
+}
