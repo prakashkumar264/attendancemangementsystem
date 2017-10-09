@@ -56,6 +56,21 @@ namespace WebApplication1.Controllers
             int semt = Convert.ToInt32(TempData["semtest"]);
             StringBuilder sb = new StringBuilder();
             string testt = subjectnamet + " th";
+            using (var adv = new AttendanceContext())
+            {
+                var sem = new SqlParameter("@sem", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = semt
+                };    
+                var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = 1
+                };
+
+                insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendancesubject  @sem, @IsCheck ",  sem, IsCheck).ToList();
+            }
             foreach (var item in stdlst.attend)
             {
              
@@ -421,5 +436,6 @@ namespace WebApplication1.Controllers
             }
             return advisor;
         }
+
     }
 }
