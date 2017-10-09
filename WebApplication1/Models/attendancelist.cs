@@ -44,6 +44,7 @@ namespace WebApplication1.Models
         public int sem { get; set; }
         public string modifiedon { get; set; }
         public string modifiedon2 { get; set; }
+        public string subjectname { get; set; }
         public IEnumerable<fetchsubthoerysubjectforselect> theorysubject { get; set; }
         public List<getdate> getdate { get; set; }
     }

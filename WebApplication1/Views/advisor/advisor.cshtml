@@ -390,6 +390,15 @@
                 <h2>DASHBOARD</h2>
             </div>
 
+            @using (Html.BeginForm("generatedefaulter", "advisor", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <input type="submit" value="Start defaulter" />
+                </div>
+            }
         </div>
     </section>
 

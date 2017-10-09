@@ -47,11 +47,17 @@ namespace WebApplication1.Controllers
                 var advisor = adv.Database.SqlQuery<stdlisttheory>("exec getsubsemfromid @id", new SqlParameter("@id", id)).ToList();
                 TempData["semtest"] = advisor[0].sem;
             }
+            using (var adv = new AttendanceContext())
+            {
+                var advisor = adv.Database.SqlQuery<stdlisttheory>("exec getsubnameforlist @id", new SqlParameter("@id", id)).ToList();
+                TempData["subname"] = advisor[0].sem;
+            }
+            string subjectnamet = Convert.ToString(TempData["subname"]);
             int semt = Convert.ToInt32(TempData["semtest"]);
             StringBuilder sb = new StringBuilder();
             foreach (var item in stdlst.attend)
             {
-                int subjectidt = Convert.ToInt32(TempData["id"]);
+             
                 int stdrollnot = item.rollno;
                 if (item.IsCheck)
                 {
@@ -68,17 +74,17 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = stdrollnot
                         };
-                        var subjectid = new SqlParameter("@subjectid", SqlDbType.Int)
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
                         {
                             Direction = System.Data.ParameterDirection.Input,
-                            Value = subjectidt
+                            Value = subjectnamet
                         };
                         var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectid, @IsCheck", stdrollno, sem, subjectid, IsCheck).ToList();
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectname, @IsCheck", stdrollno, sem, subjectname, IsCheck).ToList();
                     }
                 }
                 else
@@ -96,17 +102,17 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = stdrollnot
                         };
-                        var subjectid = new SqlParameter("@subjectid", SqlDbType.Int)
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
                         {
                             Direction = System.Data.ParameterDirection.Input,
-                            Value = subjectidt
+                            Value = subjectnamet
                         };
                         var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectid, @IsCheck", stdrollno, sem, subjectid, IsCheck).ToList();
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectname, @IsCheck", stdrollno, sem, subjectname, IsCheck).ToList();
                     }
                 }
             }
