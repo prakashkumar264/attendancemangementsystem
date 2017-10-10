@@ -45,9 +45,41 @@ namespace WebApplication1.Controllers
                 var advisor = adv.Database.SqlQuery<stdlistpractical>("exec fetchsubjectsembyname @name", new SqlParameter("@name", name)).ToList();
                 TempData["sem2"] = advisor[0].sem;
             }
+            string testt = name + " pr";
             int semt = Convert.ToInt32(TempData["sem2"]);
             string batcht = Convert.ToString(Session["currentbatch"]);
             StringBuilder sb = new StringBuilder();
+           
+            string stdnamet = "Total";
+            using (var adv = new AttendanceContext())
+            {
+                var sem = new SqlParameter("@sem", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = semt
+                };
+                var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = 1
+                };
+                var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = testt
+                };
+                var stdname = new SqlParameter("@stdname", SqlDbType.VarChar, 50)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = stdnamet
+                };
+                var batch = new SqlParameter("@batch", SqlDbType.VarChar, 5)
+                {
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = batcht
+                };
+                insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendancesubject  @sem, @IsCheck , @subjectname ,@stdname ,@batch", sem, IsCheck, subjectname, stdname ,batch).ToList();
+            }
             foreach (var item in stdlst.attend)
             {
                 string subjectnamet  = Convert.ToString(Session["subname2"]);
@@ -82,7 +114,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = batcht
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendance @stdrollno, @sem, @subjectname, @IsCheck,@batch", stdrollno, sem, subjectname, IsCheck,batch).ToList();
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = testt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendance @stdrollno, @sem, @subjectname, @IsCheck,@batch ,@test", stdrollno, sem, subjectname, IsCheck,batch, test).ToList();
                     }
                 }
                 else
@@ -115,7 +152,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = batcht
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendance @stdrollno, @sem, @subjectname, @IsCheck,@batch", stdrollno, sem, subjectname, IsCheck, batch).ToList();
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = testt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendance @stdrollno, @sem, @subjectname, @IsCheck,@batch,@test", stdrollno, sem, subjectname, IsCheck, batch,test).ToList();
                     }
                 }
             }

@@ -1,0 +1,98 @@
+﻿@model WebApplication1.Models.TEdefaulters
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TEdefaulters</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.stdrollno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.stdrollno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.stdname)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.stdname)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.total_theory)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.total_theory)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.theory_percentage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.theory_percentage)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.total_practical)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.total_practical)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.practical_percentage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.practical_percentage)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.extra_attendance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.extra_attendance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.total_attendance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.total_attendance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.attendance_percentage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.attendance_percentage)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -158,6 +158,7 @@
     <Compile Include="Controllers\assignteacherController.cs" />
     <Compile Include="Controllers\attendancelistController.cs" />
     <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\logoutController.cs" />
     <Compile Include="Controllers\practicalattendancelistController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\studentlistController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Controllers\subpracticallistsController.cs" />
     <Compile Include="Controllers\teacherController.cs" />
     <Compile Include="Controllers\teacherlistsController.cs" />
+    <Compile Include="Controllers\TEdefaultersController.cs" />
     <Compile Include="Controllers\updateadvisorController.cs" />
     <Compile Include="Controllers\uploadstudentController.cs" />
     <Compile Include="Controllers\uploadsubjectController.cs" />
@@ -177,14 +179,18 @@
     <Compile Include="Models\assignpracteacher.cs" />
     <Compile Include="Models\assignteacher.cs" />
     <Compile Include="Models\attendancelist.cs" />
+    <Compile Include="Models\BEdefaulters.cs" />
     <Compile Include="Models\login.cs" />
+    <Compile Include="Models\logout.cs" />
     <Compile Include="Models\practicalattendancelist.cs" />
     <Compile Include="Models\register.cs" />
+    <Compile Include="Models\SEdefaulters.cs" />
     <Compile Include="Models\studentlist.cs" />
     <Compile Include="Models\subjectlist.cs" />
     <Compile Include="Models\subpracticallist.cs" />
     <Compile Include="Models\teacher.cs" />
     <Compile Include="Models\teacherlist.cs" />
+    <Compile Include="Models\TEdefaulters.cs" />
     <Compile Include="Models\updateadvisor.cs" />
     <Compile Include="Models\uploadstudent.cs" />
     <Compile Include="Models\uploadsubject.cs" />
@@ -3916,12 +3922,18 @@
     <Content Include="Views\attendancelist\total.cshtml" />
     <Content Include="Views\practicalattendancelist\total.cshtml" />
     <Content Include="Views\teacher\teacher.cshtml" />
+    <Content Include="Views\TEdefaulters\Create.cshtml" />
+    <Content Include="Views\TEdefaulters\Delete.cshtml" />
+    <Content Include="Views\TEdefaulters\Details.cshtml" />
+    <Content Include="Views\TEdefaulters\Edit.cshtml" />
+    <Content Include="Views\TEdefaulters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\x86\" />
     <Folder Include="obj\x86\Debug\TempPE\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\logout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

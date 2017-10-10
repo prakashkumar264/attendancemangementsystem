@@ -46,7 +46,7 @@ namespace WebApplication1.Models
         public int sem { get; set; }
         public string modifiedon { get; set; }
         public string modifiedon2 { get; set; }
-        public int batch { get; set; }
+        public string batch { get; set; }
         public string name { get; set; }
         public IEnumerable<fetchsubpracticalsubjectforselect> practicalsubject { get; set; }
         public List<getdatepractical> getdatepractical { get; set; }

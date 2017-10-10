@@ -69,10 +69,10 @@ namespace WebApplication1.Controllers
                     Direction = System.Data.ParameterDirection.Input,
                     Value = 1
                 };
-                var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
+                var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 500)
                 {
                     Direction = System.Data.ParameterDirection.Input,
-                    Value = subjectnamet
+                    Value = testt
                 };
                 var stdname = new SqlParameter("@stdname", SqlDbType.VarChar, 50)
                 {
@@ -100,23 +100,23 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = stdrollnot
                         };
-                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
-                        {
-                            Direction = System.Data.ParameterDirection.Input,
-                            Value = subjectnamet
-                        };
-                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
-                        {
-                            Direction = System.Data.ParameterDirection.Input,
-                            Value = testt
-                        };
+                      
                         var IsCheck = new SqlParameter("@IsCheck", SqlDbType.Int)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectname, @IsCheck , @test", stdrollno, sem, subjectname, IsCheck ,test).ToList();
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 100)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = subjectnamet
+                        };
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 100)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = testt
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem,  @IsCheck ,@subjectname, @test ", stdrollno, sem, IsCheck, subjectname, test).ToList();
                     }
                 }
                 else
@@ -134,12 +134,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = stdrollnot
                         };
-                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 50)
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 500)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = subjectnamet
                         };
-                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 500)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
@@ -242,7 +242,7 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 250)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
@@ -275,7 +275,7 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-                        var test = new SqlParameter("@test", SqlDbType.VarChar, 50)
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 250)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
