@@ -74,12 +74,8 @@ namespace WebApplication1.Controllers
                     Direction = System.Data.ParameterDirection.Input,
                     Value = testt
                 };
-                var stdname = new SqlParameter("@stdname", SqlDbType.VarChar, 50)
-                {
-                    Direction = System.Data.ParameterDirection.Input,
-                    Value = stdnamet
-                };
-                insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendancesubject  @sem, @IsCheck , @subjectname ,@stdname",  sem, IsCheck,subjectname, stdname).ToList();
+              
+                insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendancesubject  @sem, @IsCheck , @subjectname ",  sem, IsCheck,subjectname).ToList();
             }
             foreach (var item in stdlst.attend)
             {
@@ -134,12 +130,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = stdrollnot
                         };
-                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 500)
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 100)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = subjectnamet
                         };
-                        var test = new SqlParameter("@test", SqlDbType.VarChar, 500)
+                        var test = new SqlParameter("@test", SqlDbType.VarChar, 100)
                         {
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
@@ -149,7 +145,7 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = IsCheckt
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem, @subjectname, @IsCheck, @test", stdrollno, sem, subjectname, IsCheck ,test).ToList();
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec inserttheoryattendance @stdrollno, @sem,  @IsCheck, @subjectname, @test", stdrollno, sem,  IsCheck , subjectname, test).ToList();
                     }
                 }
             }

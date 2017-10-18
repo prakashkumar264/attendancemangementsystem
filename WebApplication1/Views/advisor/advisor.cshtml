@@ -426,6 +426,16 @@
                     <input type="submit" value="Start defaulter" />
                 </div>
             }
+
+            @using (Html.BeginForm("exportexcel", "advisor", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <input type="submit" value="Download defaulter" />
+                </div>
+            }
         </div>
     </section>
 
