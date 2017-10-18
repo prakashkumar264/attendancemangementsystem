@@ -195,7 +195,7 @@ namespace WebApplication1.Controllers
         {
             var insertattendance = new List<stdlisttheory>();                       
             StringBuilder sb = new StringBuilder();
-            int id = Convert.ToInt32(TempData["id"]);
+            int id = Convert.ToInt32(Session["demo"]);
             using (var adv = new AttendanceContext())
             {
                 var advisor = adv.Database.SqlQuery<stdlisttheory>("exec getsubsemfromid @id", new SqlParameter("@id", id)).ToList();
@@ -243,7 +243,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon ,@test ,@sem", stdrollno, IsCheck , modifiedon,test,sem).ToList();
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 250)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = subjectnamet
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon ,@test ,@sem , @subjectname", stdrollno, IsCheck , modifiedon,test,sem ,subjectname).ToList();
                     }
                 }
                 else
@@ -276,7 +281,12 @@ namespace WebApplication1.Controllers
                             Direction = System.Data.ParameterDirection.Input,
                             Value = testt
                         };
-                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon ,@test ,@sem", stdrollno, IsCheck ,modifiedon,test,sem).ToList();
+                        var subjectname = new SqlParameter("@subjectname", SqlDbType.VarChar, 250)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = subjectnamet
+                        };
+                        insertattendance = adv.Database.SqlQuery<stdlisttheory>("exec updatetheoryattendance @stdrollno, @IsCheck , @modifiedon ,@test ,@sem , @subjectname", stdrollno, IsCheck, modifiedon, test, sem, subjectname).ToList();
                     }
                 }
             }
@@ -341,6 +351,7 @@ namespace WebApplication1.Controllers
                 };
             }
             TempData["id"] = aa.subid;
+            Session["kumar"] = TempData["id"];
             return RedirectToAction("testdemo", "attendancelist");
         }
 
