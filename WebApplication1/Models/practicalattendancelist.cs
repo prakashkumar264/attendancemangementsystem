@@ -48,8 +48,10 @@ namespace WebApplication1.Models
         public string modifiedon2 { get; set; }
         public string batch { get; set; }
         public string name { get; set; }
+        public string valueyesno { get; set; }
         public IEnumerable<fetchsubpracticalsubjectforselect> practicalsubject { get; set; }
         public List<getdatepractical> getdatepractical { get; set; }
+        public List<yesno> yesno { get; set; }
     }
 
     public class fetchsubpracticalsubjectforselect
@@ -71,5 +73,12 @@ namespace WebApplication1.Models
     {
         [Key]
         public int batch { get; set; }
+    }
+
+    public class yesno
+    {
+        [Key]
+        public int value { get; set; }
+        public string name { get; set; }
     }
 }

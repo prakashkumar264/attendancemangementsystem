@@ -440,6 +440,8 @@
                                 @Html.DropDownListFor(x => x.name, new SelectList(Model.practicalsubject, "name", "name"), "Select Subject", new { @class = "form-control", onchange = "getbatch()" })
                                <br />
                                 @Html.DropDownListFor(x => x.batch, new SelectList(Enumerable.Empty<SelectListItem>(), "batch", "batch"), "Select Batch", new { @class = "form-control" })
+                                <br />
+                                @Html.DropDownListFor(x => x.valueyesno, new SelectList(Model.yesno, "value", "name"), "Is this week's First Batch?", new { @class = "form-control" })
                                 <input type="submit" value="Submit" class="btn btn-success"/>
                             </div>
                         }

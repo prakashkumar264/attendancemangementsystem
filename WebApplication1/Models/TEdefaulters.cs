@@ -18,6 +18,14 @@ namespace WebApplication1.Models
         public string practical_percentage { get; set; }
         public string extra_attendance { get; set; }
         public string total_attendance { get; set; }
-        public string attendance_percentage { get; set; } 
+        public string attendance_percentage { get; set; }
+      
+    }
+
+    public class extratotal
+    {
+        [Key]
+        public int stdrollno { get; set; }
+        public string extra_attendance { get; set; }
     }
 }

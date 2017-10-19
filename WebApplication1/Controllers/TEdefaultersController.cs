@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,7 +19,18 @@ namespace WebApplication1.Controllers
         // GET: TEdefaulters
         public ActionResult Index()
         {
-            return View(db.TEdefaulters.ToList());
+            if (Session["id"] == null)
+            {
+                return RedirectToAction("login", "login");
+            }
+            else
+            {
+                var id = Session["id"];
+                var name = Session["name"];
+                var sem = Session["sem"];
+                return View(db.TEdefaulters.ToList());
+            }
+
         }
 
         // GET: TEdefaulters/Details/5
@@ -78,16 +90,42 @@ namespace WebApplication1.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,stdrollno,stdname,total_theory,theory_percentage,total_practical,practical_percentage,extra_attendance,total_attendance,attendance_percentage")] TEdefaulters tEdefaulters)
+        public ActionResult Edit(TEdefaulters xyz)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(tEdefaulters).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                  
+                    db.Entry(xyz).State = EntityState.Modified;
+                
+                    db.SaveChanges();
+                    var extra = new List<extratotal>();
+                    int semt = Convert.ToInt32(Session["sem"]);
+                    int stdrollnot = Convert.ToInt32(xyz.stdrollno);
+                    using (var adv = new AttendanceContext())
+                    {
+                        var sem = new SqlParameter("@sem", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = semt
+                        };
+                        var stdrollno = new SqlParameter("@stdrollno", SqlDbType.Int)
+                        {
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = stdrollnot
+                        };
+                        extra = adv.Database.SqlQuery<extratotal>("exec extraattendance  @stdrollno, @sem ", stdrollno, sem).ToList();
+                    }
+                    return RedirectToAction("Index");
+                }
+                return View(xyz);
             }
-            return View(tEdefaulters);
+            catch
+            {
+                return View();
+            }
+
         }
 
         // GET: TEdefaulters/Delete/5

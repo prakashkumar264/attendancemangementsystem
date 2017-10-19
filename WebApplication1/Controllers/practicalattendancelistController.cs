@@ -30,6 +30,7 @@ namespace WebApplication1.Controllers
                 stdlistpractical update = new stdlistpractical();
                 update.attend = getpracstd();
                 update.practicalsubject = getpracticalsub();
+                update.yesno = getyesno();
                 return View(update);
             }
         }
@@ -49,8 +50,8 @@ namespace WebApplication1.Controllers
             int semt = Convert.ToInt32(TempData["sem2"]);
             string batcht = Convert.ToString(Session["currentbatch"]);
             StringBuilder sb = new StringBuilder();
+            int firstbatcht = Convert.ToInt32(stdlst.valueyesno);
            
-            string stdnamet = "Total";
             using (var adv = new AttendanceContext())
             {
                 var sem = new SqlParameter("@sem", SqlDbType.Int)
@@ -68,17 +69,17 @@ namespace WebApplication1.Controllers
                     Direction = System.Data.ParameterDirection.Input,
                     Value = testt
                 };
-                var stdname = new SqlParameter("@stdname", SqlDbType.VarChar, 50)
+                var firstbatch = new SqlParameter("@firstbatch", SqlDbType.Int)
                 {
                     Direction = System.Data.ParameterDirection.Input,
-                    Value = stdnamet
+                    Value = firstbatcht
                 };
                 var batch = new SqlParameter("@batch", SqlDbType.VarChar, 5)
                 {
                     Direction = System.Data.ParameterDirection.Input,
                     Value = batcht
                 };
-                insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendancesubject  @sem, @IsCheck , @subjectname ,@stdname ,@batch", sem, IsCheck, subjectname, stdname ,batch).ToList();
+                insertattendance = adv.Database.SqlQuery<stdlistpractical>("exec insertpracticalattendancesubject  @sem, @IsCheck , @subjectname ,@batch ,@firstbatch", sem, IsCheck, subjectname ,batch , firstbatch).ToList();
             }
             foreach (var item in stdlst.attend)
             {
@@ -300,6 +301,16 @@ namespace WebApplication1.Controllers
             return advisor;
         }
 
+        public List<yesno> getyesno()
+        {
+            var advisor = new List<yesno>();
+            using (var adv = new AttendanceContext())
+            {
+                advisor = adv.Database.SqlQuery<yesno>("exec getyesno").ToList();
+            }
+            return advisor;
+        }
+
         //New
         public ActionResult getbatch(string idd)
         {
@@ -314,6 +325,8 @@ namespace WebApplication1.Controllers
             }
             return Json(batches, JsonRequestBehavior.AllowGet);
         }
+
+        
 
         public ActionResult submitsubname(stdlistpractical aa, FormCollection form)
         {
