@@ -397,15 +397,7 @@
     <Content Include="images\user.png" />
     <Content Include="js\admin.js" />
     <Content Include="js\demo.js" />
-    <Content Include="js\footer.js" />
     <Content Include="js\helpers.js" />
-    <Content Include="js\menuadmin.js" />
-    <Content Include="js\menuadvisorBEdefaulter.js" />
-    <Content Include="js\menuadvisorbottom.js" />
-    <Content Include="js\menuadvisorSEdefaulter.js" />
-    <Content Include="js\menuadvisorTEdefaulter.js" />
-    <Content Include="js\menuadvisortop.js" />
-    <Content Include="js\menuteacher.js" />
     <Content Include="js\pages\cards\basic.js" />
     <Content Include="js\pages\cards\colored.js" />
     <Content Include="js\pages\charts\chartjs.js" />
@@ -440,8 +432,6 @@
     <Content Include="js\pages\widgets\infobox\infobox-4.js" />
     <Content Include="js\pages\widgets\infobox\infobox-5.js" />
     <Content Include="js\script.js" />
-    <Content Include="js\topbar.js" />
-    <Content Include="js\userinfo.js" />
     <Content Include="obj\x86\Debug\WebApplication1.csproj.FileListAbsolute.txt" />
     <Content Include="obj\x86\Debug\WebApplication1.dll" />
     <Content Include="obj\x86\Debug\WebApplication1.pdb" />

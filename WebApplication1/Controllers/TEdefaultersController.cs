@@ -52,6 +52,10 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (id == 1)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
             if (tEdefaulters == null)
             {
