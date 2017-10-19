@@ -39,5 +39,9 @@ namespace WebApplication1.Context
         public System.Data.Entity.DbSet<WebApplication1.Models.practicalattendancelist> practicalattendancelists { get; set; }
 
         public System.Data.Entity.DbSet<WebApplication1.Models.TEdefaulters> TEdefaulters { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.BEdefaulters> BEdefaulters { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.SEdefaulters> SEdefaulters { get; set; }
     }
 }

@@ -20,4 +20,6 @@ namespace WebApplication1.Models
         public string total_attendance { get; set; }
         public string attendance_percentage { get; set; }
     }
+
+    
 }
