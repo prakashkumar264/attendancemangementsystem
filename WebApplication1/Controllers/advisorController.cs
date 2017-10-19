@@ -42,6 +42,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("advisor", "advisor");
         }
 
+
         public ActionResult exportexcel()
         {
             if(Convert.ToInt32(Session["sem"]) == 3 || Convert.ToInt32(Session["sem"]) == 4 )

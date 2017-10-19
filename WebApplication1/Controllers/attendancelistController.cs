@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers
             int semt = Convert.ToInt32(TempData["semtest"]);
             StringBuilder sb = new StringBuilder();
             string testt = subjectnamet + " th";
-            string stdnamet = "Total";
+           
             using (var adv = new AttendanceContext())
             {
                 var sem = new SqlParameter("@sem", SqlDbType.Int)

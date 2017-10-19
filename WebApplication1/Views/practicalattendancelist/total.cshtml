@@ -547,7 +547,7 @@
                  data: { idd: tid },
                  success: function (batches) {
                      debugger;
-                     $("#batch").html(""); // clear before appending new list
+                    // clear before appending new list
                      $.each(batches, function (i, batch) {
                          debugger;
                          $("#batch").append(
@@ -571,7 +571,7 @@
                  data: { idd: tid },
                  success: function (moddates) {
                      debugger;
-                     $("#modifiedon").html(""); // clear before appending new list
+                    // clear before appending new list
                      $.each(moddates, function (i, moddate) {
                          debugger;
                          $("#modifiedon").append(
@@ -596,7 +596,7 @@
                   data: { idd2: tt },
                   success: function (moddates) {
                       debugger;
-                      $("#modifiedon2").html(""); // clear before appending new list
+                     // clear before appending new list
                       $.each(moddates, function (i, moddate) {
                           debugger;
                           $("#modifiedon2").append(
