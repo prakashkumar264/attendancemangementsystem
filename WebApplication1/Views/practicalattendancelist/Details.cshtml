@@ -59,7 +59,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">Attendance Management System</a>
+                <a class="navbar-brand" href="#">Attendance Management System</a>
             </div>
         </div>
     </nav>
@@ -278,9 +278,36 @@
                                 </li>
                             </ul>
                         </li>
+                        @if (Convert.ToInt32(Session["sem"]) == 3 || Convert.ToInt32(Session["sem"]) == 4)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "SEdefaulters")">
+                                    <i class="material-icons">input</i>
+                                    <span>Defaulter List</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Convert.ToInt32(Session["sem"]) == 5 || Convert.ToInt32(Session["sem"]) == 6)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "TEdefaulters")">
+                                    <i class="material-icons">input</i>
+                                    <span>Defaulter List</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Convert.ToInt32(Session["sem"]) == 7 || Convert.ToInt32(Session["sem"]) == 8)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "BEdefaulters")">
+                                    <i class="material-icons">input</i>
+                                    <span>Defaulter List</span>
+                                </a>
+                            </li>
+                        }
 
                         <li>
-                            <a href="sign-in.html">
+                            <a href="@Url.Action("logout", "logout")">
                                 <i class="material-icons">input</i>
                                 <span>LogOut</span>
                             </a>
@@ -367,7 +394,7 @@
                         </li>
 
                         <li>
-                            <a href="sign-in.html">
+                            <a href="@Url.Action("logout", "logout")">
                                 <i class="material-icons">input</i>
                                 <span>LogOut</span>
                             </a>
@@ -390,6 +417,7 @@
         <!-- #END# Left Sidebar -->
 
     </section>
+
 
     <section class="content">
         <div class="container-fluid">
