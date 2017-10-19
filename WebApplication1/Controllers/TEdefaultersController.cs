@@ -74,9 +74,14 @@ namespace WebApplication1.Controllers
         // GET: TEdefaulters/Edit/5
         public ActionResult Edit(int? id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if(id == 1)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
             if (tEdefaulters == null)
@@ -96,9 +101,9 @@ namespace WebApplication1.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                  
+                   
                     db.Entry(xyz).State = EntityState.Modified;
-                
+                    
                     db.SaveChanges();
                     var extra = new List<extratotal>();
                     int semt = Convert.ToInt32(Session["sem"]);

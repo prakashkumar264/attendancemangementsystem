@@ -54,15 +54,7 @@
         </div>
     </div>
 
-    <!-- Top Bar -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="#">Attendance Management System</a>
-            </div>
-        </div>
-    </nav>
+    <script type="text/javascript" src="~/js/topbar.js"></script>
 
     <!-- #Top Bar -->
 
@@ -70,348 +62,45 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
-                <div class="image">
-                    <img src="/images/user.png" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Session["name"].ToString()</div>
-                </div>
-            </div>
+            <script type="text/javascript" src="~/js/userinfo.js"></script>
 
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
                 @if (Convert.ToInt32(Session["roleteach"]) == 1)
                 {
-                    <ul class="list">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="active">
-                            <a href="@Url.Action("admin", "admin")">
-                                <i class="material-icons">home</i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-
-
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Assign Teachers</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "assignteacher")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Subject Teachers</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "assignpracteacher")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Practical Teachers</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Teacher Records</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "teacherlists")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Teacher Details</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Register", "Register")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Register Teacher</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Theory Subject Records</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "subjectlists")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Modify</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("uploadsubject", "uploadsubject")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Add</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Practical Subject Records</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "subpracticallists")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Modify</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("uploadsubpractical", "uploadsubpractical")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Add </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="@Url.Action("logout", "admin")">
-                                <i class="material-icons">input</i>
-                                <span>LogOut</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <script type="text/javascript" src="~/js/menuadmin.js"></script>
                 }
                 @if (Convert.ToInt32(Session["roleteach"]) == 2)
                 {
                     <ul class="list">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="active">
-                            <a href="@Url.Action("advisor", "advisor")">
-                                <i class="material-icons">home</i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Student</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "studentlist")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Details</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("uploadstudent", "uploadstudent")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Upload</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Theory Attendance</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "attendancelist")">
-                                        <i class="material-icons">add_circle</i>
-                                        <span>New</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Edit", "attendancelist")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Edit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Details", "attendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("total", "attendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Total</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Practical Attendance</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "practicalattendancelist")">
-                                        <i class="material-icons">add_circle</i>
-                                        <span>New</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Edit", "practicalattendancelist")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Edit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Details", "practicalattendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("total", "practicalattendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Total</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <script type="text/javascript" src="~/js/menuadvisortop.js"></script>
                         @if (Convert.ToInt32(Session["sem"]) == 3 || Convert.ToInt32(Session["sem"]) == 4)
                         {
-                            <li>
-                                <a href="@Url.Action("Index", "SEdefaulters")">
-                                    <i class="material-icons">input</i>
-                                    <span>Defaulter List</span>
-                                </a>
-                            </li>
+                            <script type="text/javascript" src="~/js/menuadvisorSEdefaulter.js"></script>
                         }
                         @if (Convert.ToInt32(Session["sem"]) == 5 || Convert.ToInt32(Session["sem"]) == 6)
                         {
-                            <li>
-                                <a href="@Url.Action("Index", "TEdefaulters")">
-                                    <i class="material-icons">input</i>
-                                    <span>Defaulter List</span>
-                                </a>
-                            </li>
+                            <script type="text/javascript" src="~/js/menuadvisorTEdefaulter.js"></script>
                         }
                         @if (Convert.ToInt32(Session["sem"]) == 7 || Convert.ToInt32(Session["sem"]) == 8)
                         {
-                            <li>
-                                <a href="@Url.Action("Index", "BEdefaulters")">
-                                    <i class="material-icons">input</i>
-                                    <span>Defaulter List</span>
-                                </a>
-                            </li>
+                            <script type="text/javascript" src="~/js/menuadvisorBEdefaulter.js"></script>
                         }
 
-                        <li>
-                            <a href="@Url.Action("logout", "logout")">
-                                <i class="material-icons">input</i>
-                                <span>LogOut</span>
-                            </a>
-                        </li>
-
+                        <script type="text/javascript" src="~/js/menuadvisorbottom.js"></script>
 
                     </ul>
                 }
                 @if (Convert.ToInt32(Session["roleteach"]) == 3)
                 {
-                    <ul class="list">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="active">
-                            <a href="@Url.Action("teacher", "teacher")">
-                                <i class="material-icons">home</i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-
-
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Theory Attendance</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "attendancelist")">
-                                        <i class="material-icons">add_circle</i>
-                                        <span>New</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Edit", "attendancelist")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Edit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Details", "attendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("total", "attendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Total</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">content_copy</i>
-                                <span>Practical Attendance</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="@Url.Action("Index", "practicalattendancelist")">
-                                        <i class="material-icons">add_circle</i>
-                                        <span>New</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Edit", "practicalattendancelist")">
-                                        <i class="material-icons">mode_edit</i>
-                                        <span>Edit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Details", "practicalattendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("total", "practicalattendancelist")">
-                                        <i class="material-icons">view_list</i>
-                                        <span>Total</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="@Url.Action("logout", "logout")">
-                                <i class="material-icons">input</i>
-                                <span>LogOut</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
+                    <script type="text/javascript" src="~/js/menuteacher.js"></script>
                 }
 
             </div>
             <!-- #Menu -->
             <!-- Footer -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2017 <a href="javascript:void(0);">Know Green Tech</a>.
-                </div>
-            </div>
+            <script type="text/javascript" src="~/js/footer.js"></script>
             <!-- #Footer -->
         </aside>
         <!-- #END# Left Sidebar -->
