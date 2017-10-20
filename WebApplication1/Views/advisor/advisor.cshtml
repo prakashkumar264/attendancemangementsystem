@@ -436,6 +436,16 @@
                     <input type="submit" value="Download defaulter" />
                 </div>
             }
+
+            @using (Html.BeginForm("updatedefaulter", "advisor", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <input type="submit" value="Update defaulter" />
+                </div>
+            }
         </div>
     </section>
 

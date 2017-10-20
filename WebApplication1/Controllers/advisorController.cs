@@ -42,6 +42,17 @@ namespace WebApplication1.Controllers
             return RedirectToAction("advisor", "advisor");
         }
 
+        public ActionResult updatedefaulter()
+        {
+            int sem = Convert.ToInt32(Session["sem"]);
+            string year = Convert.ToString(Session["year"]);
+            using (var adv = new AttendanceContext())
+            {
+                var advi = adv.Database.SqlQuery<advisor>("exec updatedefaulter @sem, @year", new SqlParameter("@sem", sem), new SqlParameter("@year", year)).ToList();
+            }
+            return RedirectToAction("advisor", "advisor");
+        }
+
 
         public ActionResult exportexcel()
         {

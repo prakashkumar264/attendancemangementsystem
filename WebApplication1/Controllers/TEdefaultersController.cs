@@ -28,19 +28,9 @@ namespace WebApplication1.Controllers
                 var id = Session["id"];
                 var name = Session["name"];
                 var sem = Session["sem"];
-                if(Convert.ToInt32(Session["sem"]) == 3 || Convert.ToInt32(Session["sem"]) == 4)
-                {
-                    return View(db.SEdefaulters.ToList());
-                }
-                if (Convert.ToInt32(Session["sem"]) == 5 || Convert.ToInt32(Session["sem"]) == 6)
-                {
-                    return View(db.TEdefaulters.ToList());
-                }
-                if (Convert.ToInt32(Session["sem"]) == 7 || Convert.ToInt32(Session["sem"]) == 8)
-                {
-                    return View(db.BEdefaulters.ToList());
-                }
-                return View();
+               
+                return View(db.TEdefaulters.ToList());
+                
             }
 
         }
