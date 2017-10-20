@@ -29,6 +29,13 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public FileResult Download()
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\SOOAD\latest\WebApplication1\WebApplication1\ExcelFormat\studenttemplate.xlsx");
+            string fileName = "StudentTemplate.xlsx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
         [HttpPost]
         public ActionResult uploadstudent(HttpPostedFileBase studentfile)
         {

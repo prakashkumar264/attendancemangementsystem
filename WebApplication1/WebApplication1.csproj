@@ -3791,6 +3791,9 @@
     <Content Include="bin\WebApplication1.dll.config" />
     <Content Include="obj\x86\Debug\CoreCompileInputs.cache" />
     <Content Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="ExcelFormat\practical.xlsx" />
+    <Content Include="ExcelFormat\studenttemplate.xlsx" />
+    <Content Include="ExcelFormat\THEORY.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
