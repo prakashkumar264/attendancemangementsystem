@@ -1,32 +1,36 @@
-﻿@model IEnumerable<WebApplication1.Models.subpracticallist>
-
+﻿@model WebApplication1.Models.BEdefaulters
 
 @{
     Layout = null;
 }
 
 @{
-    ViewBag.Title = "Subject Details Details | Dashboard";
+    ViewBag.Title = "Student Details | Dashboard";
 }
+
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
     <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/plugins/node-waves/waves.css" rel="stylesheet" />
     <link href="/plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/themes/all-themes.css" rel="stylesheet" />
     <link href="/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
-
+    <link href="/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 </head>
-<body class="theme-red">
 
+<body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -412,54 +416,66 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>
-                    Edit Subject Details
-
-                </h2>
-
-            
+                <h2>DASHBOARD</h2>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
 
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Semester</th>
-                                            <th>Year</th>
-                                            <th>Batch</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
+            <div class="card col-md-6 col-md-offset-3">
+                <div class="body ">
 
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>@Html.DisplayFor(modelItem => item.name)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.sem)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.year)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.batch)</td>
-                                                <td>@Html.ActionLink("Edit", "Edit", new { id = item.id })</td>
-                                                <td>@Html.ActionLink("Delete", "Delete", new { id = item.id })</td>
-                                            </tr>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-                                        }
-                                    </tbody>
-                                </table>
+                        <div class="form-horizontal">
+                            <h4>TEdefaulters</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.id)
+                            @Html.HiddenFor(model => model.stdname)
+                            @Html.HiddenFor(model => model.total_theory)
+                            @Html.HiddenFor(model => model.theory_percentage)
+                            @Html.HiddenFor(model => model.total_practical)
+                            @Html.HiddenFor(model => model.practical_percentage)
+                            @Html.HiddenFor(model => model.total_attendance)
+                            @Html.HiddenFor(model => model.attendance_percentage)
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.stdrollno, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.stdrollno, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.stdrollno, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.extra_attendance, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.extra_attendance, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.extra_attendance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
                             </div>
                         </div>
+                    }
 
-
-
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
                     </div>
+
+
+
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -480,7 +496,8 @@
     <script src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
     <script src="/js/pages/tables/jquery-datatable.js"></script>
 
-
-
+    <script src="/js/pages/forms/basic-form-elements.js"></script>
+    <script src="/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </body>
+
 </html>

@@ -12,11 +12,11 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class TEdefaultersController : Controller
+    public class SEdefaultersController : Controller
     {
         private AttendanceContext db = new AttendanceContext();
 
-        // GET: TEdefaulters
+        // GET: SEdefaulters
         public ActionResult Index()
         {
             if (Session["id"] == null)
@@ -28,53 +28,52 @@ namespace WebApplication1.Controllers
                 var id = Session["id"];
                 var name = Session["name"];
                 var sem = Session["sem"];
-               
-                return View(db.TEdefaulters.ToList());
-                
-            }
 
+                return View(db.SEdefaulters.ToList());
+
+            }
         }
 
-        // GET: TEdefaulters/Details/5
+        // GET: SEdefaulters/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-          
-            TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
-            if (tEdefaulters == null)
+            
+            SEdefaulters sEdefaulters = db.SEdefaulters.Find(id);
+            if (sEdefaulters == null)
             {
                 return HttpNotFound();
             }
-            return View(tEdefaulters);
+            return View(sEdefaulters);
         }
 
-        // GET: TEdefaulters/Create
+        // GET: SEdefaulters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TEdefaulters/Create
+        // POST: SEdefaulters/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,stdrollno,stdname,total_theory,theory_percentage,total_practical,practical_percentage,extra_attendance,total_attendance,attendance_percentage")] TEdefaulters tEdefaulters)
+        public ActionResult Create([Bind(Include = "id,stdrollno,stdname,total_theory,theory_percentage,total_practical,practical_percentage,extra_attendance,total_attendance,attendance_percentage")] SEdefaulters sEdefaulters)
         {
             if (ModelState.IsValid)
             {
-                db.TEdefaulters.Add(tEdefaulters);
+                db.SEdefaulters.Add(sEdefaulters);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tEdefaulters);
+            return View(sEdefaulters);
         }
 
-        // GET: TEdefaulters/Edit/5
+        // GET: SEdefaulters/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,31 +84,32 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
-            TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
-            if (tEdefaulters == null)
+            SEdefaulters sEdefaulters = db.SEdefaulters.Find(id);
+            if (sEdefaulters == null)
             {
                 return HttpNotFound();
             }
-            return View(tEdefaulters);
+            return View(sEdefaulters);
         }
 
-        // POST: TEdefaulters/Edit/5
+        // POST: SEdefaulters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(TEdefaulters xyz)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SEdefaulters sEdefaulters)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                  
-                    db.Entry(xyz).State = EntityState.Modified;
-                
+
+                    db.Entry(sEdefaulters).State = EntityState.Modified;
+
                     db.SaveChanges();
                     var extra = new List<extratotal>();
                     int semt = Convert.ToInt32(Session["sem"]);
-                    int stdrollnot = Convert.ToInt32(xyz.stdrollno);
+                    int stdrollnot = Convert.ToInt32(sEdefaulters.stdrollno);
                     using (var adv = new AttendanceContext())
                     {
                         var sem = new SqlParameter("@sem", SqlDbType.Int)
@@ -126,37 +126,36 @@ namespace WebApplication1.Controllers
                     }
                     return RedirectToAction("Index");
                 }
-                return View(xyz);
+                return View(sEdefaulters);
             }
             catch
             {
                 return View();
             }
-
         }
 
-        // GET: TEdefaulters/Delete/5
+        // GET: SEdefaulters/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
-            if (tEdefaulters == null)
+            SEdefaulters sEdefaulters = db.SEdefaulters.Find(id);
+            if (sEdefaulters == null)
             {
                 return HttpNotFound();
             }
-            return View(tEdefaulters);
+            return View(sEdefaulters);
         }
 
-        // POST: TEdefaulters/Delete/5
+        // POST: SEdefaulters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TEdefaulters tEdefaulters = db.TEdefaulters.Find(id);
-            db.TEdefaulters.Remove(tEdefaulters);
+            SEdefaulters sEdefaulters = db.SEdefaulters.Find(id);
+            db.SEdefaulters.Remove(sEdefaulters);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

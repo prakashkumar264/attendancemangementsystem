@@ -175,10 +175,12 @@
     <Compile Include="Controllers\assignpracteacherController.cs" />
     <Compile Include="Controllers\assignteacherController.cs" />
     <Compile Include="Controllers\attendancelistController.cs" />
+    <Compile Include="Controllers\BEdefaultersController.cs" />
     <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\logoutController.cs" />
     <Compile Include="Controllers\practicalattendancelistController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SEdefaultersController.cs" />
     <Compile Include="Controllers\studentlistController.cs" />
     <Compile Include="Controllers\subjectlistsController.cs" />
     <Compile Include="Controllers\subpracticallistsController.cs" />
@@ -3945,6 +3947,16 @@
     <Content Include="Views\TEdefaulters\Details.cshtml" />
     <Content Include="Views\TEdefaulters\Edit.cshtml" />
     <Content Include="Views\TEdefaulters\Index.cshtml" />
+    <Content Include="Views\SEdefaulters\Create.cshtml" />
+    <Content Include="Views\SEdefaulters\Delete.cshtml" />
+    <Content Include="Views\SEdefaulters\Details.cshtml" />
+    <Content Include="Views\SEdefaulters\Edit.cshtml" />
+    <Content Include="Views\SEdefaulters\Index.cshtml" />
+    <Content Include="Views\BEdefaulters\Create.cshtml" />
+    <Content Include="Views\BEdefaulters\Delete.cshtml" />
+    <Content Include="Views\BEdefaulters\Details.cshtml" />
+    <Content Include="Views\BEdefaulters\Edit.cshtml" />
+    <Content Include="Views\BEdefaulters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
