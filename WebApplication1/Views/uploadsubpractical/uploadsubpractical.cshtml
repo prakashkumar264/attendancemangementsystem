@@ -420,13 +420,7 @@
                         <div class="header">
                             <h2> Upload Subject List </h2>
                         </div>
-                        <p>
 
-                            @using (Html.BeginForm("Download", "uploadsubpractical", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <input type="submit" value="Download Format" />
-                            }
-                        </p>
                         <div class="body">
 
                             @using (Html.BeginForm("uploadsubpractical", "uploadsubpractical", FormMethod.Post, new { enctype = "multipart/form-data" }))

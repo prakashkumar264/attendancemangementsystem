@@ -23,13 +23,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public FileResult Download()
-        {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\SOOAD\latest\WebApplication1\WebApplication1\ExcelFormat\THEORY.xlsx");
-            string fileName = "THEORY.xlsx";
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
-
         [HttpPost]
         public ActionResult uploadsubject(HttpPostedFileBase subjectfile)
         {
@@ -98,7 +91,9 @@ namespace WebApplication1.Controllers
                         sqlBulkCopy.ColumnMappings.Add("Name", "name");
                         sqlBulkCopy.ColumnMappings.Add("Semester", "sem");
                         sqlBulkCopy.ColumnMappings.Add("Year", "year");
-                         con.Open();
+                        sqlBulkCopy.ColumnMappings.Add("Teacherid", "teacherid");
+
+                        sqlBulkCopy.ColumnMappings.Add("Teachername", "teachername"); con.Open();
                         sqlBulkCopy.WriteToServer(dt);
                         con.Close();
                     }
