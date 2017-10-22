@@ -3834,7 +3834,9 @@
     <Content Include="Views\login\login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\admin.cshtml" />
-    <Content Include="Views\admin\admin.cshtml" />
+    <Content Include="Views\admin\admin.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\advisor\advisor.cshtml" />
     <Content Include="Views\updateadvisor\updateadvisor.cshtml" />
     <Content Include="Views\teacherlists\Create.cshtml" />
