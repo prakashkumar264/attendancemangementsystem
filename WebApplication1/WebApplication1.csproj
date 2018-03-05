@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,12 +216,6 @@
     <Compile Include="Models\uploadstudent.cs" />
     <Compile Include="Models\uploadsubject.cs" />
     <Compile Include="Models\uploadsubjpractical.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -374,9 +369,6 @@
     <Content Include="js\pages\widgets\infobox\infobox-4.js" />
     <Content Include="js\pages\widgets\infobox\infobox-5.js" />
     <Content Include="js\script.js" />
-    <Content Include="obj\x86\Debug\WebApplication1.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\x86\Debug\WebApplication1.dll" />
-    <Content Include="obj\x86\Debug\WebApplication1.pdb" />
     <Content Include="pages\changelogs.html" />
     <Content Include="pages\charts\chartjs.html" />
     <Content Include="pages\charts\flot.html" />
@@ -3719,11 +3711,11 @@
     <Content Include="plugins\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="obj\x86\Debug\CoreCompileInputs.cache" />
-    <Content Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="ExcelFormat\practical.xlsx" />
     <Content Include="ExcelFormat\studenttemplate.xlsx" />
     <Content Include="ExcelFormat\THEORY.xlsx" />
+    <None Include="Properties\PublishProfiles\attendancebvcoe - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\attendancebvcoecs - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3834,9 +3826,6 @@
     <Content Include="Views\login\login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\admin.cshtml" />
-    <Content Include="Views\admin\admin.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Views\advisor\advisor.cshtml" />
     <Content Include="Views\updateadvisor\updateadvisor.cshtml" />
     <Content Include="Views\teacherlists\Create.cshtml" />
@@ -3893,10 +3882,11 @@
     <Content Include="Views\BEdefaulters\Details.cshtml" />
     <Content Include="Views\BEdefaulters\Edit.cshtml" />
     <Content Include="Views\BEdefaulters\Index.cshtml" />
+    <Content Include="Views\admin\admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="obj\x86\Debug\TempPE\" />
+    <Folder Include="obj\x86\Debug\" />
     <Folder Include="Uploads\" />
     <Folder Include="Views\logout\" />
   </ItemGroup>
@@ -3910,7 +3900,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
