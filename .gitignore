@@ -262,4 +262,4 @@ __pycache__/
 
 
 * linguist-vendored
-*.cs linguist-vendored=false
+*.html linguist-vendored=false
